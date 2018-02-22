@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+        <h1>Post a Message</h1>
+        <form method='post' action='/messages'>
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <div class="form-group <%= flash[:has_Error] %>">
+        <label for='message[content]'>Your Message :</label>
+        <textarea class="form-control" rows="3" name='message[content]'></textarea>
+        <% if flash[:message_errors] %>
+        <% flash[:message_errors].each do |field,value| %>
+            <% value.each do |error| %>
+            <span class='small text-danger'> <%= field.capitalize %> <%= error %> : </span>
+            <% end %>
+        <% end %>
+        <% end %>
+        </div>
+
+        <input class="btn btn-primary" type='submit' value='Post a message'>
+    </form>
+    </div>
+    <div class="row">
+    <div class="col-sm-12">
+    <% if @messages %>
+        <% @messages.each do |message| %>
+            <h4><%= message.user.name %> - <%= message.created_at.strftime("%B %d, %Y") %></h4>
+            <div class="col-sm-12">
+                <p><%= message.content %></p>            
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12">
+                <% if message.comments %>
+                <% message.comments.each do |comment| %>
+                    <h5 class="text-info"><%= comment.user.name %> - <%= comment.created_at.strftime("%B %d, %Y") %></h5>
+                    <div class="col-sm-12">
+                        <p><%= comment.content %></p>
+                    </div>
+                <% end %>
+                <% end %>
+                </div>
+            </div>
+            <h4 class="text-info">Post a Comment</h4>
+            <form method='post' action='/comments'>
+                <input type="hidden" name="message_id" value="<%= message.id %>">
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                <div class="form-group <%= flash[:hasError] %>">
+                <label for='comment[content]'>Your Comments :</label>
+                <textarea class="form-control" rows="3" name='comment[content]'></textarea>
+                    <% if flash[:comment_errors] %>
+                    <% flash[:comment_errors].each do |field,value| %>
+                        <% value.each do |error| %>
+                        <span class='small text-danger'> <%= field.capitalize %> <%= error %> : </span>
+                        <% end %>
+                    <% end %>
+                    <% end %>
+                </div>
+                <input class="btn btn-primary" type='submit' value='Post a comment'>
+            </form>
+        </div>
+        </div>
+        <% end %>
+    <% end %>
+    </div>
+    </div>
+</div>

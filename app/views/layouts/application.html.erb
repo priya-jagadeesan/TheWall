@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TheWall</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">CodingDojo Wall</a>
+    </div>
+    <% if current_user %>
+    <ul class="nav navbar-nav navbar-right">
+    <li class="strong text-primary"><a href="/users/<%=current_user.id%>">Welcome, <%= current_user.name %></a></li>
+    <li class="text-primary"><a href="/users/logout">Log Out</a></li>
+    </ul>
+    <% end %> 
+  </div>
+</nav>
+
+<%= yield %>
+
+</body>
+</html>

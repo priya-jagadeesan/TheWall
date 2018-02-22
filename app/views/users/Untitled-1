@@ -1,0 +1,8 @@
+  # PWD_Regex = /^(?=.*\d)(?=.*([a-z]|[A-Z]))([\x20-\x7E]){8,40}$/
+  # , format: { with: PWD_Regex }
+  # validates_date :dateOfBirth, on_or_before: lambda { Date.current }
+
+              # <div class="form-group">
+            # <label for='dob'>Date of Birth :</label>
+            # <input class="form-control"  type='date' name='user[dateOfBirth]' placeholder='mm/dd/yyyy'>
+            # </div>

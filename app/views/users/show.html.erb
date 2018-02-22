@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="row">
+        <h1> Welcome <%= current_user.name %></h1>
+        <p> What you want to do? </p>
+        <p><a href="/users/<%=current_user.id%>/edit">Edit Profile</a></p>
+        <p><a href="/users/<%=current_user.id%>" data-method='delete'>Delete Profile</a></p>
+    </div>
+</div>
